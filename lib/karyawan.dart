@@ -14,15 +14,15 @@ class KaryawanPage extends StatefulWidget {
 }
 
 class _KaryawanPageState extends State<KaryawanPage> {
-  List<KaryawanModel> data = [];
+  List<KaryawanModel> dataListKaryawan = [];
   bool isLoading = false;
 
   Future read() async {
     setState(() {
       isLoading = true;
     });
-    data = await KaryawanDatabase.instance.readAll();
-    print("Length List " + data.length.toString());
+    dataListKaryawan = await KaryawanDatabase.instance.readAll();
+    print("Length List " + dataListKaryawan.length.toString());
     setState(() {
       isLoading = false;
     });
@@ -96,10 +96,11 @@ class _KaryawanPageState extends State<KaryawanPage> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : data.length == 0 ? Center(child: Text("no data available"),) :ListView.builder(
-              itemCount: data.length,
+          : dataListKaryawan.length == 0 ? Center(child: Text("no data available"),) :
+      ListView.builder(
+              itemCount: dataListKaryawan.length,
               itemBuilder: (c, index) {
-                final item = data[index];
+                final item = dataListKaryawan[index];
                 return Card(
                   child: ListTile(
                     onTap: () async{

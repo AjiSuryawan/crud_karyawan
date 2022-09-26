@@ -46,6 +46,7 @@ class _UpdateDataPageState extends State<UpdateDataPage> {
   }
 
   Future readItem() async{
+    print("id selected : "+widget.id.toString());
     KaryawanModel model = await KaryawanDatabase.instance.read(widget.id);
     setState(() {
       nameController.text = model.name;
